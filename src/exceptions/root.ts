@@ -24,10 +24,17 @@ export enum ErrorCode {
   USER_NOT_FOUND = "E001",
   USER_ALREADY_EXISTS = "E002",
   INCORRECT_PASSWORD = "E003",
+  VALIDATION_ERROR = "E004",
 }
 
 export enum ErrorMessage {
   USER_NOT_FOUND = "User Not Found",
   USER_ALREADY_EXISTS = "User Already Exists",
   INCORRECT_PASSWORD = "Incorrect Password",
+  VALIDATION_ERROR = "Validation Error",
+}
+
+export enum ErrorStatus {
+  INTERNAL_SERVER_ERROR = 500,
+  VALIDATION_ERROR = 400,
 }

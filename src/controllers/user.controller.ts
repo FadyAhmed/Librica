@@ -6,6 +6,8 @@ import { JWT_SECRET } from "../secrets";
 import { BadRequestException } from "../exceptions/bad-request";
 import { ErrorCode, ErrorMessage } from "../exceptions/root";
 import { BaseController } from "./base.controller";
+import { SignUpBodySchema } from "../schemas/users.signup.schema";
+import { LogInBodySchema } from "../schemas/users.login.schema";
 
 export class UserController extends BaseController {
   constructor() {
@@ -13,7 +15,7 @@ export class UserController extends BaseController {
   }
 
   async signup(req: Request, res: Response) {
-    const { email, password, name } = req.body;
+    const { email, password, name } = req.body as SignUpBodySchema;
     let user = await prismaClient.user.findFirst({ where: { email: email } });
     if (user) {
       throw new BadRequestException(
@@ -33,7 +35,7 @@ export class UserController extends BaseController {
   }
 
   async login(req: Request, res: Response, next: NextFunction) {
-    const { email, password } = req.body;
+    const { email, password } = req.body as LogInBodySchema;
     let user = await prismaClient.user.findFirst({ where: { email: email } });
     if (!user) {
       throw new BadRequestException(
