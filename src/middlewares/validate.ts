@@ -1,9 +1,9 @@
-import { ZodType } from 'zod';
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from "express";
+import { ZodType } from "zod";
+import { CustomZodError } from "../exceptions/zod-error";
 
 export const validate =
-  (schema: ZodType) =>
-  (req: Request, res: Response, next: NextFunction) => {
+  (schema: ZodType) => (req: Request, res: Response, next: NextFunction) => {
     try {
       schema.parse({
         body: req.body,
@@ -12,6 +12,6 @@ export const validate =
       });
       next();
     } catch (err) {
-      next(err); // Pass Zod error to global handler
+      throw new CustomZodError(err);
     }
   };

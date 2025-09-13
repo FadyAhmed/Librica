@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
+import { ZodError } from "zod";
 import {
   ErrorCode,
   ErrorMessage,
   ErrorStatus,
   HttpException,
 } from "../exceptions/root";
-import { ZodError } from "zod";
 
 export const errorMiddleWare = (
   err: HttpException | ZodError,
@@ -15,6 +15,8 @@ export const errorMiddleWare = (
 ) => {
   // Handle Zod validation errors
   if (err instanceof ZodError) {
+    console.log(err);
+    
     res.status(ErrorStatus.VALIDATION_ERROR).json({
       message: ErrorMessage.VALIDATION_ERROR,
       errorCode: ErrorCode.VALIDATION_ERROR,
