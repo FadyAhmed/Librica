@@ -7,6 +7,7 @@ import {
   DeleteBorrowerRequestBodySchema,
   ListBorrowsRequestBodySchema,
   ReturnBookRequestBodySchema,
+  UpdateBorrowerRequestBodySchema,
 } from "../schemas/borrowers.schemas";
 import { BaseController } from "./base.controller";
 import { BadRequestException } from "../exceptions/bad-request";
@@ -89,6 +90,7 @@ export class BorrowController extends BaseController {
       where: {
         bookId: bookId,
         userId: usrId,
+        returnedAt: null
       },
     });
 
@@ -100,10 +102,12 @@ export class BorrowController extends BaseController {
     }
 
     try {
-      // add borrower quantity
-      const borrower = await prismaClient.borrower.delete({
+      const borrower = await prismaClient.borrower.update({
         where: {
           id: +oldBorrower.id,
+        },
+        data: {
+          returnedAt: new Date(),
         },
       });
 
@@ -134,6 +138,7 @@ export class BorrowController extends BaseController {
     const borrwos = await prismaClient.borrower.findMany({
       where: {
         userId: usrId,
+        returnedAt: null
       },
     });
 
@@ -199,7 +204,41 @@ export class BorrowController extends BaseController {
     res.json(borrowers);
   }
 
-  async updateBorrower(req: Request, res: Response, next: NextFunction) {}
+  async updateBorrower(req: Request, res: Response, next: NextFunction) {
+    const { body, params } = req as unknown as UpdateBorrowerRequestBodySchema;
+    const borrowerId = +params.id;
+
+    await prismaClient.borrower
+      .findFirst({
+        where: {
+          id: borrowerId,
+          returnedAt: null,
+        },
+      })
+      .then(() => {
+        throw new NotFoundException(
+          ErrorMessage.NO_OVERDUE_BORROWER,
+          ErrorCode.NO_OVERDUE_BORROWER
+        );
+      });
+
+    try {
+      const updatedBorrower = await prismaClient.borrower.update({
+        where: {
+          id: borrowerId,
+        },
+        data: {
+          dueDate: body.dueDate,
+        },
+      });
+      res.json(updatedBorrower);
+    } catch (err) {
+      throw new NotFoundException(
+        ErrorMessage.BORROWER_NOT_FOUND,
+        ErrorCode.BORROWER_NOT_FOUND
+      );
+    }
+  }
 
   async deleteBorrower(req: Request, res: Response, next: NextFunction) {
     const { id: borrowerId } =

@@ -53,6 +53,7 @@ model Borrower {
   
   dueDate DateTime
   borrowedAt DateTime @default(now())
+  returnedAt DateTime ?
   @@map("borrowers")
 }
 

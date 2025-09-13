@@ -1,14 +1,15 @@
 import { Router } from "express";
+import { BorrowController } from "../controllers/borrow.controller";
+import authMiddleWare from "../middlewares/auth";
+import adminRoleMiddleware from "../middlewares/roles/admin";
+import { validate } from "../middlewares/validate";
 import {
   borrowBookSchema,
   deleteBorrowerSchema,
   listBorrowsSchema,
   returnBookSchema,
+  updateBorrowerSchema,
 } from "../schemas/borrowers.schemas";
-import { BorrowController } from "../controllers/borrow.controller";
-import { validate } from "../middlewares/validate";
-import authMiddleWare from "../middlewares/auth";
-import adminRoleMiddleware from "../middlewares/roles/admin";
 
 const borrowRouter: Router = Router();
 const borrowController = new BorrowController();
@@ -44,7 +45,7 @@ borrowRouter.get(
 borrowRouter.put(
   "/:id",
   [authMiddleWare, adminRoleMiddleware],
-  validate(borrowBookSchema),
+  validate(updateBorrowerSchema),
   borrowController.updateBorrower
 );
 

@@ -39,6 +39,24 @@ export const listBorrowsSchema = z.object({
   }),
 });
 
+export const updateBorrowerSchema = z.object({
+  params: z.object({
+    id: z
+      .string()
+      .transform((val) => (val ? parseInt(val, 10) : undefined))
+      .pipe(z.number().int().positive()),
+  }),
+  body: z.object({
+    dueDate: z
+      .string()
+      .transform((val) => (val ? new Date(val) : undefined))
+      .pipe(z.date())
+      .refine((date) => date > new Date(), {
+        message: "Due date must be a future date.",
+      }),
+  }),
+});
+
 export const deleteBorrowerSchema = z.object({
   params: z.object({
     id: z
@@ -50,5 +68,12 @@ export const deleteBorrowerSchema = z.object({
 
 export type BorrowBookRequestBodySchema = z.infer<typeof borrowBookSchema>;
 export type ReturnBookRequestBodySchema = z.infer<typeof returnBookSchema>;
-export type ListBorrowsRequestBodySchema = z.infer<typeof listBorrowsSchema>['query'];
-export type DeleteBorrowerRequestBodySchema = z.infer<typeof deleteBorrowerSchema>['params'];
+export type ListBorrowsRequestBodySchema = z.infer<
+  typeof listBorrowsSchema
+>["query"];
+export type UpdateBorrowerRequestBodySchema = z.infer<
+  typeof updateBorrowerSchema
+>;
+export type DeleteBorrowerRequestBodySchema = z.infer<
+  typeof deleteBorrowerSchema
+>["params"];

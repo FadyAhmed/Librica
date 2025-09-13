@@ -29,6 +29,8 @@ export enum ErrorCode {
   NOT_AN_ADMIN = "E006",
   BOOK_NOT_FOUND = "E007",
   DUBLICATE_BORROW = "E008",
+  BORROWER_NOT_FOUND = "E009",
+  NO_OVERDUE_BORROWER = "E010",
   INTERNAL_SERVER_ERROR = "E999",
 }
 
@@ -41,6 +43,8 @@ export enum ErrorMessage {
   UNAUTHORIZED = "Unauthorized",
   NOT_AN_ADMIN = "Unauthorized! You're not an admin",
   BOOK_NOT_FOUND = "Book Not Found",
+  BORROWER_NOT_FOUND = "Borrower Not Found",
+  NO_OVERDUE_BORROWER = "Borrower Already Returned The Book",
   DUBLICATE_BORROW = "You've Already Borrowed This Book",
 }
 
