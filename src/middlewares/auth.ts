@@ -1,10 +1,10 @@
-import { ErrorCode, ErrorMessage } from "../exceptions/root";
-import { NextFunction, Request, Response } from "express";
-import { prismaClient } from "../index";
-import * as jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../secrets";
-import { UnauthorizedException } from "../exceptions/unauthorized";
 import { User } from "@prisma/client";
+import { NextFunction, Request, Response } from "express";
+import * as jwt from "jsonwebtoken";
+import { ErrorCode, ErrorMessage } from "../exceptions/root";
+import { UnauthorizedException } from "../exceptions/unauthorized";
+import { prismaClient } from "../index";
+import { JWT_SECRET } from "../secrets";
 
 declare global {
   namespace Express {
@@ -23,8 +23,8 @@ const authMiddleWare = async (
 
   if (!token || !token.startsWith("Bearer ")) {
     throw new UnauthorizedException(
-      ErrorMessage.Unauthorized,
-      ErrorCode.Unauthorized
+      ErrorMessage.UNAUTHORIZED,
+      ErrorCode.UNAUTHORIZED
     );
   }
 
@@ -37,8 +37,8 @@ const authMiddleWare = async (
     if (!user) {
       return next(
         new UnauthorizedException(
-          ErrorMessage.Unauthorized,
-          ErrorCode.Unauthorized
+          ErrorMessage.UNAUTHORIZED,
+          ErrorCode.UNAUTHORIZED
         )
       );
     } else {
@@ -47,8 +47,8 @@ const authMiddleWare = async (
     }
   } catch (error) {
     throw new UnauthorizedException(
-      ErrorMessage.Unauthorized,
-      ErrorCode.Unauthorized
+      ErrorMessage.UNAUTHORIZED,
+      ErrorCode.UNAUTHORIZED
     );
   }
 };
