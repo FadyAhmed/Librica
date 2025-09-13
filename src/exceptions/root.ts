@@ -25,6 +25,7 @@ export enum ErrorCode {
   USER_ALREADY_EXISTS = "E002",
   INCORRECT_PASSWORD = "E003",
   VALIDATION_ERROR = "E004",
+  INTERNAL_SERVER_ERROR = "E999",
 }
 
 export enum ErrorMessage {
@@ -32,6 +33,7 @@ export enum ErrorMessage {
   USER_ALREADY_EXISTS = "User Already Exists",
   INCORRECT_PASSWORD = "Incorrect Password",
   VALIDATION_ERROR = "Validation Error",
+  INTERNAL_SERVER_ERROR = "Internal Server Error",
 }
 
 export enum ErrorStatus {

@@ -25,7 +25,7 @@ export const errorMiddleWare = (
     });
   }
 
-  // handle api errors
+  // Handle api errors
   else if (err instanceof HttpException) {
     const statusCode =
       err instanceof HttpException
@@ -43,4 +43,13 @@ export const errorMiddleWare = (
       ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
     });
   }
+
+  // Handle general error
+  res.status(ErrorStatus.INTERNAL_SERVER_ERROR).json(<HttpException>{
+      message: ErrorMessage.INTERNAL_SERVER_ERROR,
+      errorCode: ErrorCode.INTERNAL_SERVER_ERROR,
+      statusCode: ErrorStatus.INTERNAL_SERVER_ERROR,
+      ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+    });
+
 };
