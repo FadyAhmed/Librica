@@ -4,11 +4,12 @@
     "module": "CommonJS",
     "outDir": "dist",
     "rootDir": "src",
-    "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "baseUrl": "src",
-    "paths": { "*": ["*"] }
+    "paths": { "*": ["*"] },
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "strict": true
   },
-  "include": ["src"]
+  "include": ["src/**/*", "src/types/**/*"]
 }

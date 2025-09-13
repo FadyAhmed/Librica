@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { ZodError } from "zod";
+import { unknown, ZodError } from "zod";
 import {
   ErrorCode,
   ErrorMessage,
@@ -8,16 +8,14 @@ import {
 } from "../exceptions/root";
 
 export const errorMiddleWare = (
-  err: HttpException | ZodError,
+  err: HttpException | ZodError | Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   // Handle Zod validation errors
   if (err instanceof ZodError) {
-    console.log(err);
-    
-    res.status(ErrorStatus.VALIDATION_ERROR).json({
+    return res.status(ErrorStatus.VALIDATION_ERROR).json({
       message: ErrorMessage.VALIDATION_ERROR,
       errorCode: ErrorCode.VALIDATION_ERROR,
       statusCode: ErrorStatus.VALIDATION_ERROR,
@@ -35,7 +33,7 @@ export const errorMiddleWare = (
         : ErrorStatus.INTERNAL_SERVER_ERROR;
     const message = err.message || "Internal Server Error";
 
-    res.status(statusCode).json(<HttpException>{
+    return res.status(statusCode).json(<HttpException>{
       message: message,
       errorCode: err.errorCode,
       statusCode: statusCode,
@@ -45,11 +43,10 @@ export const errorMiddleWare = (
   }
 
   // Handle general error
-  res.status(ErrorStatus.INTERNAL_SERVER_ERROR).json(<HttpException>{
-      message: ErrorMessage.INTERNAL_SERVER_ERROR,
-      errorCode: ErrorCode.INTERNAL_SERVER_ERROR,
-      statusCode: ErrorStatus.INTERNAL_SERVER_ERROR,
-      ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
-    });
-
+  return res.status(ErrorStatus.INTERNAL_SERVER_ERROR).json(<HttpException>{
+    message: ErrorMessage.INTERNAL_SERVER_ERROR,
+    errorCode: ErrorCode.INTERNAL_SERVER_ERROR,
+    statusCode: ErrorStatus.INTERNAL_SERVER_ERROR,
+    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+  });
 };

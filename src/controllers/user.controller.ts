@@ -8,6 +8,7 @@ import { LogInBodySchema } from "../schemas/users.login.schema";
 import { SignUpBodySchema } from "../schemas/users.signup.schema";
 import { JWT_SECRET } from "../secrets";
 import { BaseController } from "./base.controller";
+import { NotFoundException } from "../exceptions/not-found";
 
 export class UserController extends BaseController {
   constructor() {
@@ -38,7 +39,7 @@ export class UserController extends BaseController {
     const { email, password } = req.body as LogInBodySchema;
     let user = await prismaClient.user.findFirst({ where: { email: email } });
     if (!user) {
-      throw new BadRequestException(
+      throw new NotFoundException(
         ErrorMessage.USER_NOT_FOUND,
         ErrorCode.USER_NOT_FOUND
       );
@@ -58,5 +59,9 @@ export class UserController extends BaseController {
     );
 
     res.json({ user, token });
+  }
+
+  async me(req: Request, res: Response, next: NextFunction) {
+    res.json(req.user);
   }
 }

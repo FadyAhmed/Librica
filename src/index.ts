@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import rootRouter from "./routes/index";
 import { PORT } from "./secrets";
-import { PrismaClient } from "./generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { errorMiddleWare } from "./middlewares/errors";
 
 const app: Express = express();
