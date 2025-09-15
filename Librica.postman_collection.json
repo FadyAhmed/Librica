@@ -1,0 +1,2422 @@
+{
+	"info": {
+		"_postman_id": "d67b1750-d72a-4005-8386-685388564ba5",
+		"name": "Librica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12709037"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{user-name}}\",\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localURL}}/api/auth/signup",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{user-name}}\",\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/auth/signup",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9a-ZtL01uRN7wwdMgbnESTVD72j8i4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:15:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"name\": \"User1\",\n    \"email\": \"User@gmail.com\",\n    \"role\": \"USER\",\n    \"password\": \"\",\n    \"createdAt\": \"2025-09-15T04:15:23.531Z\",\n    \"updatedAt\": \"2025-09-15T04:15:23.531Z\"\n}"
+						},
+						{
+							"name": "User Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{user-name}}\",\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/auth/signup",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "412"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19c-bZL4pi2bPjaF5SeDWXJlczoKYFk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:15:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User Already Exists\",\n    \"errorCode\": \"E002\",\n    \"statusCode\": 400,\n    \"errors\": null,\n    \"stack\": \"Error: User Already Exists\\n    at UserController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\user.controller.ts:22:13)\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\user.controller.ts:38:58)\"\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{user-name}}\",\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/auth/signup",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "471"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d7-qmcPOErhJ8M72NT05V+hAd76QkY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:16:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Error\",\n    \"errorCode\": \"E004\",\n    \"statusCode\": 400,\n    \"errors\": [\n        {\n            \"origin\": \"string\",\n            \"code\": \"invalid_format\",\n            \"format\": \"email\",\n            \"pattern\": \"/^(?!\\\\.)(?!.*\\\\.\\\\.)([A-Za-z0-9_'+\\\\-\\\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\\-]*\\\\.)+[A-Za-z]{2,}$/\",\n            \"path\": [\n                \"body\",\n                \"email\"\n            ],\n            \"message\": \"Invalid email address\"\n        },\n        {\n            \"origin\": \"string\",\n            \"code\": \"too_small\",\n            \"minimum\": 6,\n            \"inclusive\": true,\n            \"path\": [\n                \"body\",\n                \"password\"\n            ],\n            \"message\": \"Too small: expected string to have >=6 characters\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data = pm.response.json();\r",
+									"pm.globals.set(\"accessToken\", data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localURL}}/api/auth/login",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/auth/login",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "295"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"127-SJOL+ymlA/QLKrlPSney4HMMnxg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:18:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 4,\n        \"name\": \"User1\",\n        \"email\": \"User5@gmail.com\",\n        \"role\": \"USER\",\n        \"password\": \"\",\n        \"createdAt\": \"2025-09-15T04:09:00.463Z\",\n        \"updatedAt\": \"2025-09-15T04:09:00.463Z\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc1NzkwOTg4OH0.otJi_67y054A0s_ii5TOVMZcrjx5RA_UMQUyxNn87hM\"\n}"
+						},
+						{
+							"name": "Wrong Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{user-email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/auth/login",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "410"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19a-rifypNPTDxWbVWkjg0uWpx+cnM4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:18:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Incorrect Password\",\n    \"errorCode\": \"E003\",\n    \"statusCode\": 400,\n    \"errors\": null,\n    \"stack\": \"Error: Incorrect Password\\n    at UserController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\user.controller.ts:52:13)\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\user.controller.ts:38:58)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localURL}}/api/auth/me",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localURL}}/api/auth/me",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9b-aSofFbIR4f6PVzPZtGVCTPcFk/A\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:20:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"name\": \"User1\",\n    \"email\": \"User5@gmail.com\",\n    \"role\": \"USER\",\n    \"password\": \"\",\n    \"createdAt\": \"2025-09-15T04:09:00.463Z\",\n    \"updatedAt\": \"2025-09-15T04:09:00.463Z\"\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localURL}}/api/auth/me",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1066"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42a-RGbv/nUGsSeq7t8sWpvkK0ZiUB0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:20:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized\",\n    \"errorCode\": \"E005\",\n    \"statusCode\": 401,\n    \"errors\": null,\n    \"stack\": \"Error: Unauthorized\\n    at C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\auth.ts:49:11\\n    at Generator.next (<anonymous>)\\n    at C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\auth.ts:41:71\\n    at new Promise (<anonymous>)\\n    at __awaiter (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\auth.ts:37:12)\\n    at authMiddleWare (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\auth.ts:21:5)\\n    at Layer.handleRequest (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\node_modules\\\\router\\\\lib\\\\layer.js:152:17)\\n    at next (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\node_modules\\\\router\\\\lib\\\\route.js:157:13)\\n    at Route.dispatch (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\node_modules\\\\router\\\\lib\\\\route.js:117:3)\\n    at handle (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\node_modules\\\\router\\\\index.js:435:11)\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{book-title}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"isbn\": \"{{isbn}}\",\r\n    \"quantity\": 6,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localURL}}/api/books/create",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not An Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Book1\",\r\n    \"author\": \"Author1\",\r\n    \"isbn\": \"1222\",\r\n    \"quantity\": 6,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/books/create",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"books",
+										"create"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1040"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"410-oPFBTZ8+XLP8zOw70HCLAMTh8pA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:26:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized! You're not an admin\",\n    \"errorCode\": \"E006\",\n    \"statusCode\": 401,\n    \"errors\": null,\n    \"stack\": \"Error: Unauthorized! You're not an admin\\n    at C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\roles\\\\admin.ts:14:11\\n    at Generator.next (<anonymous>)\\n    at C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\roles\\\\admin.ts:8:71\\n    at new Promise (<anonymous>)\\n    at __awaiter (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\roles\\\\admin.ts:4:12)\\n    at adminRoleMiddleware (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\roles\\\\admin.ts:9:5)\\n    at Layer.handleRequest (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\node_modules\\\\router\\\\lib\\\\layer.js:152:17)\\n    at next (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\node_modules\\\\router\\\\lib\\\\route.js:157:13)\\n    at C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\middlewares\\\\auth.ts:46:7\\n    at Generator.next (<anonymous>)\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Book1\",\r\n    \"author\": \"Author1\",\r\n    \"isbn\": \"1222\",\r\n    \"quantity\": 6,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/books/create",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"books",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aa-w88xKyQzneZ0cKti1wvQs+LWsDc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:27:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"title\": \"Book1\",\n    \"author\": \"Author1\",\n    \"isbn\": \"1222\",\n    \"quantity\": 6,\n    \"shelfLocation\": \"1-A\",\n    \"createdAt\": \"2025-09-15T04:27:48.106Z\",\n    \"updatedAt\": \"2025-09-15T04:27:48.106Z\"\n}"
+						},
+						{
+							"name": "Book Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"{{book-title}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"isbn\": \"{{isbn}}\",\r\n    \"quantity\": 6,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/books/create",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"books",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "411"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19b-7LLExJ3Lm6RNZ1inDNe2jc5OYKw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:35:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book Already Exists\",\n    \"errorCode\": \"E013\",\n    \"statusCode\": 400,\n    \"errors\": null,\n    \"stack\": \"Error: Book Already Exists\\n    at BookController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\book.controller.ts:30:13)\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\book.controller.ts:5:58)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"book2\",\r\n    \"author\": \"Fady\",\r\n    \"isbn\": \"1222\",\r\n    \"quantity\": 1,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localURL}}/api/books/update/7",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"update",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"book2\",\r\n    \"author\": \"Fady\",\r\n    \"isbn\": \"1222\",\r\n    \"quantity\": 1,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/books/update/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"books",
+										"update",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-foG7HLGBuJVajwDk4Ng0JWepy+A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 14:33:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"book2\",\n    \"author\": \"Fady\",\n    \"isbn\": \"1222\",\n    \"quantity\": 1,\n    \"shelfLocation\": \"1-A\",\n    \"createdAt\": \"2025-09-13T13:39:45.785Z\",\n    \"updatedAt\": \"2025-09-13T14:33:39.053Z\"\n}"
+						},
+						{
+							"name": "not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"book2\",\r\n    \"author\": \"Fady\",\r\n    \"isbn\": \"1222\",\r\n    \"quantity\": 1,\r\n    \"shelfLocation\": \"1-A\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/books/update/a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"books",
+										"update",
+										"a"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "401"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"191-kMd0msF7rh5z1Pjh2fgTTDvU+RQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 14:34:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book Not Found\",\n    \"errorCode\": \"E007\",\n    \"statusCode\": 404,\n    \"errors\": null,\n    \"stack\": \"Error: Book Not Found\\n    at BookController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\book.controller.ts:40:13)\\n    at Generator.throw (<anonymous>)\\n    at rejected (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\book.controller.ts:6:65)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{localURL}}/api/books/delete/2",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/books/delete/a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"books",
+										"delete",
+										"a"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "401"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"191-9LGwzMxRyBwopQDFiFS2sevzTFI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 14:35:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book Not Found\",\n    \"errorCode\": \"E007\",\n    \"statusCode\": 404,\n    \"errors\": null,\n    \"stack\": \"Error: Book Not Found\\n    at BookController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\book.controller.ts:58:13)\\n    at Generator.throw (<anonymous>)\\n    at rejected (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\book.controller.ts:6:65)\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/books/delete/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"books",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-p3CM3k9M6Oyo2hUMDzxkfYMWeQ4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 14:35:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"title\": \"book1\",\n    \"author\": \"Fady\",\n    \"isbn\": \"1222\",\n    \"quantity\": 1,\n    \"shelfLocation\": \"1-A\",\n    \"createdAt\": \"2025-09-13T13:43:12.889Z\",\n    \"updatedAt\": \"2025-09-13T13:43:12.889Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{localURL}}/api/books?page=1",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/books?page=2",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"books"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "365"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16d-EYJgmXxdUjymOnNaj5+tJk6hYCw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:38:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 7,\n    \"books\": [\n        {\n            \"id\": 3,\n            \"title\": \"admin\",\n            \"author\": \"Fady\",\n            \"isbn\": \"1222\",\n            \"quantity\": 0,\n            \"shelfLocation\": \"1-A\",\n            \"createdAt\": \"2025-09-15T01:18:09.760Z\",\n            \"updatedAt\": \"2025-09-15T01:18:16.060Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Book1\",\n            \"author\": \"Author1\",\n            \"isbn\": \"1222\",\n            \"quantity\": 6,\n            \"shelfLocation\": \"1-A\",\n            \"createdAt\": \"2025-09-15T04:27:48.106Z\",\n            \"updatedAt\": \"2025-09-15T04:27:48.106Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{localURL}}/api/books/search?page=1&title=book",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"search"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "quantity",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "fady",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "book"
+								},
+								{
+									"key": "shelfLocation",
+									"value": "B",
+									"disabled": true
+								},
+								{
+									"key": "isbn",
+									"value": "122",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/books/search?page=1&title=book",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"books",
+										"search"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "author",
+											"value": "fady",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "book"
+										},
+										{
+											"key": "shelfLocation",
+											"value": "B",
+											"disabled": true
+										},
+										{
+											"key": "isbn",
+											"value": "122",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "364"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16c-RxdsUtaZTEiSkb89uEcoNiKyZw0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 04:39:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 4,\n    \"books\": [\n        {\n            \"id\": 4,\n            \"title\": \"Book1\",\n            \"author\": \"Author1\",\n            \"isbn\": \"1222\",\n            \"quantity\": 6,\n            \"shelfLocation\": \"1-A\",\n            \"createdAt\": \"2025-09-15T04:27:48.106Z\",\n            \"updatedAt\": \"2025-09-15T04:27:48.106Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"book1\",\n            \"author\": \"Author1\",\n            \"isbn\": \"\",\n            \"quantity\": 6,\n            \"shelfLocation\": \"1-A\",\n            \"createdAt\": \"2025-09-15T04:30:17.871Z\",\n            \"updatedAt\": \"2025-09-15T04:30:17.871Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{accessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Borrowers",
+			"item": [
+				{
+					"name": "Borrow a book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dueDate\": \"2025-09-17T19:10:58.970Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localURL}}/api/borrower/check-out/2",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower",
+								"check-out",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Past Due Date",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2025-08-17T19:10:58.970Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/borrower/check-out/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"borrower",
+										"check-out",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-/qfu30ya96RCVs9yPpGnPs14HY4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:26:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Error\",\n    \"errorCode\": \"E004\",\n    \"statusCode\": 400,\n    \"errors\": [\n        {\n            \"code\": \"custom\",\n            \"path\": [\n                \"body\",\n                \"dueDate\"\n            ],\n            \"message\": \"Due date must be a future date.\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error - After 1 Month Due Date",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2025-10-17T19:10:58.970Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/borrower/check-out/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"borrower",
+										"check-out",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-/qfu30ya96RCVs9yPpGnPs14HY4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:26:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Error\",\n    \"errorCode\": \"E004\",\n    \"statusCode\": 400,\n    \"errors\": [\n        {\n            \"code\": \"custom\",\n            \"path\": [\n                \"body\",\n                \"dueDate\"\n            ],\n            \"message\": \"Due date must be a future date.\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2025-09-17T19:10:58.970Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/borrower/check-out/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"borrower",
+										"check-out",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-cjZouugJSmosLqaprmAmu2X6qbw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:27:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"userId\": 4,\n    \"bookId\": 2,\n    \"dueDate\": \"2025-09-17T19:10:58.970Z\",\n    \"borrowedAt\": \"2025-09-15T05:27:07.923Z\",\n    \"returnedAt\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Return Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localURL}}/api/borrower/return/1",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower",
+								"return",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/borrower/return/1",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"return",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-M2uYjOqVuCXyhMMZVvflJDaUDr8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:28:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"userId\": 4,\n    \"bookId\": 1,\n    \"dueDate\": \"2025-09-17T19:10:58.970Z\",\n    \"borrowedAt\": \"2025-09-15T05:03:03.734Z\",\n    \"returnedAt\": \"2025-09-15T05:28:22.419Z\"\n}"
+						},
+						{
+							"name": "Book Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/borrower/return/1",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"return",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "408"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"198-/Rl05SJuNU4298g7Ci6AnfxunoI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:28:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book Not Found\",\n    \"errorCode\": \"E007\",\n    \"statusCode\": 400,\n    \"errors\": null,\n    \"stack\": \"Error: Book Not Found\\n    at BorrowController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\borrow.controller.ts:118:13)\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\borrow.controller.ts:5:58)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List My Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localURL}}/api/borrower/my-borrows?page=1",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower",
+								"my-borrows"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc3MDk3N30.20uRDlffy01C2a66RYw6_B9lZ_OeAJg0uq3a1k3Uc_o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/borrower/my-borrows?page=1",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"my-borrows"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "111"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6f-h/WrOQU5H7T2NsAfbdYFXngD13Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:29:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 1,\n    \"borrowedBooks\": [\n        {\n            \"id\": 2,\n            \"title\": \"admin\",\n            \"author\": \"Fady\",\n            \"isbn\": \"1222\",\n            \"shelfLocation\": \"1-A\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List Borrowers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localURL}}/api/borrower?page=1&durationFrom=1",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "borrowingStatus",
+									"value": "OVER_DUE",
+									"disabled": true
+								},
+								{
+									"key": "durationFrom",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc5ODE2MH0.APvwz1nmxd8KWQxxO2CFzq-zWOhWWb1C-Oginv4DLKY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/borrower?page=1&durationFrom=1",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "borrowingStatus",
+											"value": "OVER_DUE",
+											"disabled": true
+										},
+										{
+											"key": "durationFrom",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "607"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25f-Rn2Yrive9wajpmjfxP6wxE+Q0uk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:31:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 3,\n    \"returnedBorrowers\": [\n        {\n            \"id\": 2,\n            \"borrowedAt\": \"2025-09-15T01:19:29.318Z\",\n            \"returnedAt\": \"2025-09-15T01:27:05.386Z\",\n            \"dueDate\": \"2025-10-17T19:10:58.970Z\",\n            \"book\": {\n                \"id\": 1,\n                \"title\": \"admin'--\",\n                \"author\": \"Fady\",\n                \"isbn\": \"1222\",\n                \"quantity\": 3,\n                \"shelfLocation\": \"1-A\"\n            },\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"Fady\",\n                \"email\": \"fady@gmail.com\",\n                \"role\": \"ADMIN\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"borrowedAt\": \"2025-09-15T05:27:07.923Z\",\n            \"returnedAt\": null,\n            \"dueDate\": \"2025-09-17T19:10:58.970Z\",\n            \"book\": {\n                \"id\": 2,\n                \"title\": \"admin\",\n                \"author\": \"Fady\",\n                \"isbn\": \"1222\",\n                \"quantity\": 0,\n                \"shelfLocation\": \"1-A\"\n            },\n            \"user\": {\n                \"id\": 4,\n                \"name\": \"User1\",\n                \"email\": \"User5@gmail.com\",\n                \"role\": \"ADMIN\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Borrowers Analisys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localURL}}/api/borrower/analytics?borrowingStatus=ALL&durationFrom=1",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower",
+								"analytics"
+							],
+							"query": [
+								{
+									"key": "borrowingStatus",
+									"value": "ALL"
+								},
+								{
+									"key": "durationFrom",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc5ODE2MH0.APvwz1nmxd8KWQxxO2CFzq-zWOhWWb1C-Oginv4DLKY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{localURL}}/api/borrower/analytics?borrowingStatus=ALL&durationFrom=1",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"analytics"
+									],
+									"query": [
+										{
+											"key": "borrowingStatus",
+											"value": "ALL"
+										},
+										{
+											"key": "durationFrom",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "17"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:32:40 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1757915249"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/csv; charset=utf-8"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "attachment; filename=ALL_borrowers_from_2025-09-14T05:32:40.463Z.csv"
+								},
+								{
+									"key": "Content-Length",
+									"value": "718"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2ce-jzxwizGEiYs0CsGFWS6xksAvA38\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Borrower ID,Borrowed At,Returned At,Due Date,Book Title,Book Author,User Name,User Email\n2,Mon Sep 15 2025 04:19:29 GMT+0300 (Eastern European Summer Time),Mon Sep 15 2025 04:27:05 GMT+0300 (Eastern European Summer Time),Fri Oct 17 2025 22:10:58 GMT+0300 (Eastern European Summer Time),admin'--,Fady,Fady,fady@gmail.com\n4,Mon Sep 15 2025 08:27:07 GMT+0300 (Eastern European Summer Time),,Wed Sep 17 2025 22:10:58 GMT+0300 (Eastern European Summer Time),admin,Fady,User1,User5@gmail.com\n3,Mon Sep 15 2025 08:03:03 GMT+0300 (Eastern European Summer Time),Mon Sep 15 2025 08:28:22 GMT+0300 (Eastern European Summer Time),Wed Sep 17 2025 22:10:58 GMT+0300 (Eastern European Summer Time),admin'--,Fady,User1,User5@gmail.com"
+						}
+					]
+				},
+				{
+					"name": "Update Borrower",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dueDate\": \"2025-10-17T19:10:58.970Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localURL}}/api/borrower/4",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Already Returned Book",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc5ODE2MH0.APvwz1nmxd8KWQxxO2CFzq-zWOhWWb1C-Oginv4DLKY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2025-10-17T19:10:58.970Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/borrower/2",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "260"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"104-Un12dBXyjCl2w6hsk73FJmm6vEU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:33:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower Already Returned The Book\",\n    \"errorCode\": \"E010\",\n    \"statusCode\": 404,\n    \"errors\": null,\n    \"stack\": \"Error: Borrower Already Returned The Book\\n    at C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\borrow.controller.ts:420:17\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Nzc5ODE2MH0.APvwz1nmxd8KWQxxO2CFzq-zWOhWWb1C-Oginv4DLKY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dueDate\": \"2025-10-17T19:10:58.970Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localURL}}/api/borrower/4",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-TEGP/8uHR/spv96GOC9+SThIViM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:35:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"userId\": 4,\n    \"bookId\": 2,\n    \"dueDate\": \"2025-10-17T19:10:58.970Z\",\n    \"borrowedAt\": \"2025-09-15T05:27:07.923Z\",\n    \"returnedAt\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Borrower",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localURL}}/api/borrower/2",
+							"host": [
+								"{{localURL}}"
+							],
+							"path": [
+								"api",
+								"borrower",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localURL}}/api/borrower/1",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "416"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a0-uooMiUYKLjs+IOxq8tH1UnpTs+8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:43:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower Not Found\",\n    \"errorCode\": \"E009\",\n    \"statusCode\": 404,\n    \"errors\": null,\n    \"stack\": \"Error: Borrower Not Found\\n    at BorrowController.<anonymous> (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\borrow.controller.ts:462:13)\\n    at Generator.throw (<anonymous>)\\n    at rejected (C:\\\\Users\\\\fady9\\\\Desktop\\\\Node Type Script\\\\ecommerce\\\\src\\\\controllers\\\\borrow.controller.ts:6:65)\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localURL}}/api/borrower/2",
+									"host": [
+										"{{localURL}}"
+									],
+									"path": [
+										"api",
+										"borrower",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-/TxJ7oacB9y5G1W9ZYZDtZcItoY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 05:44:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"userId\": 1,\n    \"bookId\": 1,\n    \"dueDate\": \"2025-10-17T19:10:58.970Z\",\n    \"borrowedAt\": \"2025-09-15T01:19:29.318Z\",\n    \"returnedAt\": \"2025-09-15T01:27:05.386Z\"\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{accessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localURL",
+			"value": ""
+		},
+		{
+			"key": "user-name",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "user-email",
+			"value": ""
+		},
+		{
+			"key": "book-title",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "author",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "isbn",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

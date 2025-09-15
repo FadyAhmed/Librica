@@ -58,6 +58,7 @@ For a more streamlined setup, use Docker:
 ## API Documentation
 
 Use the provided Postman collection to test the application and explore the API endpoints.
+[Link text](Librica.postman_collection.json)
 
 ---
 
@@ -86,3 +87,6 @@ Use the provided Postman collection to test the application and explore the API 
 -   `GET /api/borrower/analytics?borrowingStatus=ALL&durationFrom=1`: (Admin) Get borrower analytics and download a CSV file.
 -   `PUT /api/borrower/:borrowId`: (Admin) Update the due date for a specific borrow process.
 -   `DELETE /api/borrower/:borrowId`: (Admin) Remove a borrow process.
+
+## Database Diagram
+![Image description](./db-diagram.jpg)
