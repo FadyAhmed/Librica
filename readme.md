@@ -74,18 +74,20 @@ Use the provided Postman collection to test the application and explore the API 
 -   `POST /api/books/create`: (Admin) Add a new book.
 -   `PUT /api/books/update/:id`: (Admin) Update a book's details.
 -   `DELETE /api/books/update/:id`: (Admin) Delete a book.
--   `GET /api/books?page=1`: List all system books with pagination.
--   `GET /api/books/search?page=1&title=book`: Search for books by title.
+-   `GET /api/books?page=1`: List all books in the system with pagination.
+-   `GET /api/books/search?page=1&title=book`: Search for books by books critria like: author, title, isbn, etc...
 
 ### Borrowers
 
--   `POST /api/borrower/check-out/:bookId`: Borrow a book. The due date cannot be more than one month from the checkout date.
--   `POST /api/borrower/return/:bookId`: Return a borrowed book.
+-   `POST /api/borrower/check-out/:bookId`: Borrow a book. The due date must be in the future and cannot be more than one month after the borrowing date.
+-   `POST /api/borrower/return/:bookId`: User return a borrowed book.
 -   `GET /api/borrower/my-borrows?page=1`: List the currently borrowed books for the authenticated user.
--   `GET /api/borrower?page=1&borrowingStatus=OVER_DUE&durationFrom=1`: (Admin) List all borrowers in the system, with filtering by status and duration.
--   `GET /api/borrower/analytics?borrowingStatus=ALL&durationFrom=1`: (Admin) Get borrower analytics and download a CSV file.
+-   `GET /api/borrower?page=1&borrowingStatus=OVER_DUE&durationFrom=1`: (Admin) List all borrowers in the system, with filtering by status (OVER_DUE or ALL) and duration by days.
+-   `GET /api/borrower/analytics?borrowingStatus=ALL&durationFrom=1`: (Admin) Get borrowers analytics with filtering by status (OVER_DUE or ALL) and duration by days and download a CSV file.
 -   `PUT /api/borrower/:borrowId`: (Admin) Update the due date for a specific borrow process.
 -   `DELETE /api/borrower/:borrowId`: (Admin) Remove a borrow process.
+
+--- 
 
 ## Database Diagram
 ![Image description](./db-diagram.jpg)

@@ -17,6 +17,7 @@ import { PAGE_SIZE } from "../secrets";
 import { Borrower, jsonToCsv } from "../utils/json-to-csv";
 import { BaseController } from "./base.controller";
 import { buildTableName } from "../utils/build-table-name";
+import { validateDueDate } from "../utils/validate-due-date";
 
 export class BorrowController extends BaseController {
   constructor() {
@@ -57,12 +58,7 @@ export class BorrowController extends BaseController {
     }
 
     // check that dueDate is not one month later
-    const currentDate = new Date();
-    const oneMonthFromNow = new Date();
-    oneMonthFromNow.setMonth(currentDate.getMonth() + 1);
-
-    const dueDate = new Date(body.dueDate);
-    if (dueDate.getTime() > oneMonthFromNow.getTime()) {
+    if (validateDueDate(body.dueDate)) {
       throw new BadRequestException(
         ErrorMessage.DUE_DATE_IS_ONE_MONTH_LATER,
         ErrorCode.DUE_DATE_IS_ONE_MONTH_LATER
