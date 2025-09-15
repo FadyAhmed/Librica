@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Run migrations
-npx prisma migrate deploy
-npx prisma generate
+# dev
+# npm run prisma:dev
+# npm run start:dev
 
-# Start the app
+# deploy
+npm run prisma
 npm run start

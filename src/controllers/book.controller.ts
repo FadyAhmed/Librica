@@ -10,6 +10,7 @@ import { BaseController } from "./base.controller";
 import { NotFoundException } from "../exceptions/not-found";
 import { ErrorCode, ErrorMessage } from "../exceptions/root";
 import { PAGE_SIZE } from "../secrets";
+import { BadRequestException } from "../exceptions/bad-request";
 
 export class BookController extends BaseController {
   constructor() {
@@ -18,6 +19,19 @@ export class BookController extends BaseController {
 
   async createBook(req: Request, res: Response, next: NextFunction) {
     const body = req.body as CreateBookRequestBodySchema;
+    const oldBook = await prismaClient.book.findFirst({
+      where: {
+        isbn: body.isbn,
+        title: body.title,
+        author: body.author,
+      },
+    });
+    if (oldBook) {
+      throw new BadRequestException(
+        ErrorMessage.BOOK_IS_DUBLICATE,
+        ErrorCode.BOOK_IS_DUBLICATE
+      );
+    }
     const book = await prismaClient.book.create({
       data: {
         ...body,

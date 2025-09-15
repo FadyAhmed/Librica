@@ -18,6 +18,6 @@ app.use(errorMiddleWare);
 
 let extractedPort = PORT ? Number(PORT) : 3000;
 
-app.listen(extractedPort, '0.0.0.0', () => {
+app.listen(extractedPort, "0.0.0.0", () => {
   console.log(`listining on: 0.0.0.0:${extractedPort}`);
 });

@@ -33,6 +33,9 @@ export enum ErrorCode {
   NO_OVERDUE_BORROWER = "E010",
   RATE_LIMIT_EXCEEDED = "E011",
   NOT_FOUND = "E012",
+  BOOK_IS_DUBLICATE = "E013",
+  DUE_DATE_IS_ONE_MONTH_LATER = "E014",
+  DUE_DATE_CANT_BE_IN_PAST = "E015",
   INTERNAL_SERVER_ERROR = "E999",
 }
 
@@ -45,10 +48,13 @@ export enum ErrorMessage {
   UNAUTHORIZED = "Unauthorized",
   NOT_AN_ADMIN = "Unauthorized! You're not an admin",
   BOOK_NOT_FOUND = "Book Not Found",
+  BOOK_IS_DUBLICATE = "Book Already Exists",
   BORROWER_NOT_FOUND = "Borrower Not Found",
   NO_OVERDUE_BORROWER = "Borrower Already Returned The Book",
   RATE_LIMIT_EXCEEDED = "Too Many Requests",
   DUBLICATE_BORROW = "You've Already Borrowed This Book",
+  DUE_DATE_IS_ONE_MONTH_LATER = "Due Date couldn't be after one month",
+  DUE_DATE_CANT_BE_IN_PAST = "Due Date is in past",
   NOT_FOUND = "Not Found",
 }
 

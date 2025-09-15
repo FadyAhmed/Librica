@@ -8,6 +8,7 @@ import { LogInBodySchema, SignUpBodySchema } from "../schemas/users.schemas";
 import { JWT_SECRET } from "../secrets";
 import { BaseController } from "./base.controller";
 import { NotFoundException } from "../exceptions/not-found";
+import { User } from "@prisma/client";
 
 export class UserController extends BaseController {
   constructor() {
@@ -31,12 +32,15 @@ export class UserController extends BaseController {
       },
     });
 
-    res.json(user);
+    user.password = "";
+    res.status(200).json(user);
   }
 
   async login(req: Request, res: Response, next: NextFunction) {
     const { email, password } = req.body as LogInBodySchema;
-    let user = await prismaClient.user.findFirst({ where: { email: email } });
+    let user = await prismaClient.user.findFirst({
+      where: { email: email },
+    });
     if (!user) {
       throw new NotFoundException(
         ErrorMessage.USER_NOT_FOUND,
@@ -54,13 +58,17 @@ export class UserController extends BaseController {
       {
         userId: user.id,
       },
-      JWT_SECRET
+      JWT_SECRET,
+      { expiresIn: 3600 }
     );
 
+    user.password = "";
     res.json({ user, token });
   }
 
   async me(req: Request, res: Response, next: NextFunction) {
-    res.json(req.user);
+    let user: User = req.user;
+    user.password = "";
+    res.json(user);
   }
 }

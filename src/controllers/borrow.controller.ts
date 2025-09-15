@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { ReturnedBorrowers } from "types/returned-borrows.types";
 import { BadRequestException } from "../exceptions/bad-request";
 import { NotFoundException } from "../exceptions/not-found";
-import { ErrorCode, ErrorMessage } from "../exceptions/root";
+import { ErrorCode, ErrorMessage, ErrorStatus } from "../exceptions/root";
 import { prismaClient } from "../index";
 import {
   BorrowBookRequestBodySchema,
@@ -42,21 +42,35 @@ export class BorrowController extends BaseController {
         ErrorCode.DUBLICATE_BORROW
       );
     }
+
+    // get the book to check quantity
+    const borrowedBook = await prismaClient.book.findUnique({
+      where: {
+        id: bookId,
+      },
+    });
+    if (borrowedBook?.quantity! <= 0) {
+      throw new NotFoundException(
+        ErrorMessage.BOOK_NOT_FOUND,
+        ErrorCode.BOOK_NOT_FOUND
+      );
+    }
+
+    // check that dueDate is not one month later
+    const currentDate = new Date();
+    const oneMonthFromNow = new Date();
+    oneMonthFromNow.setMonth(currentDate.getMonth() + 1);
+
+    const dueDate = new Date(body.dueDate);
+    if (dueDate.getTime() > oneMonthFromNow.getTime()) {
+      throw new BadRequestException(
+        ErrorMessage.DUE_DATE_IS_ONE_MONTH_LATER,
+        ErrorCode.DUE_DATE_IS_ONE_MONTH_LATER
+      );
+    }
+
     try {
-      // get the book to check quantity
-      const borrowedBook = await prismaClient.book.findUnique({
-        where: {
-          id: bookId,
-        },
-      });
-
-      if (borrowedBook?.quantity! <= 0) {
-        throw new NotFoundException(
-          ErrorMessage.BOOK_NOT_FOUND,
-          ErrorCode.BOOK_NOT_FOUND
-        );
-      }
-
+      // start borrwing process
       // update quantity
       await prismaClient.book.update({
         where: {
@@ -78,9 +92,10 @@ export class BorrowController extends BaseController {
 
       res.json(borrower);
     } catch (err) {
-      throw new NotFoundException(
-        ErrorMessage.BOOK_NOT_FOUND,
-        ErrorCode.BOOK_NOT_FOUND
+      throw new BadRequestException(
+        ErrorMessage.INTERNAL_SERVER_ERROR,
+        ErrorCode.INTERNAL_SERVER_ERROR,
+        err
       );
     }
   };
@@ -409,6 +424,7 @@ export class BorrowController extends BaseController {
         }
       });
 
+      
     try {
       const updatedBorrower = await prismaClient.borrower.update({
         where: {
@@ -444,8 +460,8 @@ export class BorrowController extends BaseController {
       res.json(deletedBorrow);
     } catch (err) {
       throw new NotFoundException(
-        ErrorMessage.BOOK_NOT_FOUND,
-        ErrorCode.BOOK_NOT_FOUND
+        ErrorMessage.BORROWER_NOT_FOUND,
+        ErrorCode.BORROWER_NOT_FOUND
       );
     }
   };
