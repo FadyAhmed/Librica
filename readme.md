@@ -57,8 +57,7 @@ For a more streamlined setup, use Docker:
 
 ## API Documentation
 
-Use the provided Postman collection to test the application and explore the API endpoints.
-[Link text](Librica.postman_collection.json)
+Use the provided Postman collection to test the application and explore the API endpoints [here](Librica.postman_collection.json).
 
 ---
 
