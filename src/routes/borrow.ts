@@ -42,6 +42,13 @@ borrowRouter.get(
   borrowController.listAllBorrowers
 );
 
+borrowRouter.get(
+  "/analytics",
+  [authMiddleWare, adminRoleMiddleware],
+  validate(listBorrowsSchema),
+  borrowController.downloadAnalytics
+);
+
 borrowRouter.put(
   "/:id",
   [authMiddleWare, adminRoleMiddleware],

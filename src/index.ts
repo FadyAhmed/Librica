@@ -16,6 +16,8 @@ app.use("/api", rootRouter);
 
 app.use(errorMiddleWare);
 
-app.listen(PORT, () => {
-  console.log("listining");
+let extractedPort = process.env.PORT ? Number(process.env.PORT) : 3000;
+
+app.listen(extractedPort, '0.0.0.0', () => {
+  console.log(`listining on: 0.0.0.0:${extractedPort}`);
 });

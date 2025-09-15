@@ -6,17 +6,21 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "windows", "linux-musl-openssl-3.0.x"]
   // output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas = ["librica"]
 }
 
 enum Role {
   ADMIN
   USER
+
+  @@schema("librica")
 }
 model User {
   id Int @id @default(autoincrement())
@@ -28,6 +32,7 @@ model User {
   updatedAt DateTime @updatedAt
   borrowers Borrower[]
   @@map("users")
+  @@schema("librica")
 }
 
 model Book {
@@ -41,6 +46,7 @@ model Book {
   updatedAt DateTime @updatedAt
   borrowers Borrower[]
   @@map("books")
+  @@schema("librica")
 }
 
 model Borrower {
@@ -55,5 +61,6 @@ model Borrower {
   borrowedAt DateTime @default(now())
   returnedAt DateTime ?
   @@map("borrowers")
+  @@schema("librica")
 }
 

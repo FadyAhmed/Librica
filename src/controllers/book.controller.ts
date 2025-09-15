@@ -28,7 +28,7 @@ export class BookController extends BaseController {
 
   async updateBook(req: Request, res: Response, next: NextFunction) {
     const body = req.body as UpdateBookRequestBodySchema;
-    const bookId = req.params.id;
+    const bookId = encodeURIComponent(req.params.id);
     try {
       const updatedBook = await prismaClient.book.update({
         where: {

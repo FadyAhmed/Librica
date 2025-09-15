@@ -29,6 +29,13 @@ export const returnBookSchema = z.object({
   }),
 });
 
+export enum BorrowingStatusEnum {
+  All = "ALL",
+  OverDue = "OVER_DUE",
+}
+
+const BorrowingStatus = [BorrowingStatusEnum.All, BorrowingStatusEnum.OverDue] as const;
+
 export const listBorrowsSchema = z.object({
   query: z.object({
     page: z
@@ -36,6 +43,12 @@ export const listBorrowsSchema = z.object({
       .optional()
       .transform((val) => (val ? parseInt(val, 10) : undefined))
       .pipe(z.number().int().positive().optional()),
+    durationFrom: z
+      .string()
+      .optional()
+      .transform((val) => (val ? parseInt(val, 10) : undefined))
+      .pipe(z.number().int().positive().optional()),
+    borrowingStatus: z.enum(BorrowingStatus).optional(),
   }),
 });
 
