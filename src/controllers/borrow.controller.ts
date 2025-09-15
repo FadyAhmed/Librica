@@ -16,6 +16,7 @@ import {
 import { PAGE_SIZE } from "../secrets";
 import { Borrower, jsonToCsv } from "../utils/json-to-csv";
 import { BaseController } from "./base.controller";
+import { buildTableName } from "../utils/build-table-name";
 
 export class BorrowController extends BaseController {
   constructor() {
@@ -256,17 +257,19 @@ export class BorrowController extends BaseController {
       "user"."email" AS "user_email",
       "user"."role" AS "user_role"
     FROM
-      "borrowers"
+      "librica"."borrowers"
     LEFT JOIN
-      "users" AS "user" ON "user"."id" = "borrowers"."userId"
+      "librica"."users" AS "user" ON "user"."id" = "borrowers"."userId"
     LEFT JOIN
-      "books" AS "book" ON "book"."id" = "borrowers"."bookId"
+      "librica"."books" AS "book" ON "book"."id" = "borrowers"."bookId"
     ${whereClause}
     ${paginationQuery}
   `) as Promise<any[]>,
 
       prismaClient.$queryRaw(Prisma.sql`
-    SELECT COUNT(*) FROM "borrowers" LEFT JOIN "users" AS "user" ON "user"."id" = "borrowers"."userId" LEFT JOIN "books" AS "book" ON "book"."id" = "borrowers"."bookId" ${whereClause}
+    SELECT COUNT(*) FROM "librica"."borrowers"
+    LEFT JOIN "librica"."users" AS "user" ON "user"."id" = "borrowers"."userId" 
+    LEFT JOIN "librica"."books" AS "book" ON "book"."id" = "borrowers"."bookId" ${whereClause}
   `) as Promise<{ count: number | bigint }[]>,
     ]);
 
@@ -329,7 +332,7 @@ export class BorrowController extends BaseController {
 
     console.log(totalCount);
 
-    return { totalCount, returnedBorrowers };
+    return { totalCount, returnedBorrowers, fromDate };
   };
 
   public downloadAnalytics = async (
@@ -340,11 +343,18 @@ export class BorrowController extends BaseController {
     const {
       totalCount,
       returnedBorrowers,
+      fromDate,
     }: {
       totalCount: number;
       returnedBorrowers: ReturnedBorrowers[];
+      fromDate: Date | undefined;
     } = await this.handleListAllBorrowsRequest(req, true);
+    const { borrowingStatus } =
+      req.query as unknown as ListBorrowsRequestBodySchema;
 
+    if (totalCount === 0) {
+      throw new NotFoundException(ErrorMessage.NOT_FOUND, ErrorCode.NOT_FOUND);
+    }
     const csvBorrowers: Borrower[] = returnedBorrowers.map(
       (borrower) =>
         <Borrower>{
@@ -360,11 +370,11 @@ export class BorrowController extends BaseController {
     );
 
     const csvFile: string = jsonToCsv(csvBorrowers);
+    const csvFileName: string = `${
+      borrowingStatus ? borrowingStatus : BorrowingStatusEnum.All
+    }_borrowers_from_${fromDate?.toISOString()}.csv`;
     res.setHeader("Content-Type", "text/csv");
-    res.setHeader(
-      "Content-Disposition",
-      'attachment; filename="borrowers.csv"'
-    );
+    res.setHeader("Content-Disposition", `attachment; filename=${csvFileName}`);
 
     res.status(200).send(csvFile);
   };
@@ -377,18 +387,26 @@ export class BorrowController extends BaseController {
     const { body, params } = req as unknown as UpdateBorrowerRequestBodySchema;
     const borrowerId = +params.id;
 
+    // make sure that borrower didn't returned the book yet
     await prismaClient.borrower
       .findFirst({
         where: {
           id: borrowerId,
-          returnedAt: null,
         },
       })
-      .then(() => {
-        throw new NotFoundException(
-          ErrorMessage.NO_OVERDUE_BORROWER,
-          ErrorCode.NO_OVERDUE_BORROWER
-        );
+      .then((borrower) => {
+        if (!borrower) {
+          throw new NotFoundException(
+            ErrorMessage.BORROWER_NOT_FOUND,
+            ErrorCode.BORROWER_NOT_FOUND
+          );
+        }
+        if (borrower && borrower.returnedAt != null) {
+          throw new NotFoundException(
+            ErrorMessage.NO_OVERDUE_BORROWER,
+            ErrorCode.NO_OVERDUE_BORROWER
+          );
+        }
       });
 
     try {

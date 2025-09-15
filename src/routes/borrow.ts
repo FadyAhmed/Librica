@@ -10,6 +10,7 @@ import {
   returnBookSchema,
   updateBorrowerSchema,
 } from "../schemas/borrowers.schemas";
+import { limiterMiddleware } from "../middlewares/rate-limit";
 
 const borrowRouter: Router = Router();
 const borrowController = new BorrowController();
@@ -44,7 +45,7 @@ borrowRouter.get(
 
 borrowRouter.get(
   "/analytics",
-  [authMiddleWare, adminRoleMiddleware],
+  [authMiddleWare, adminRoleMiddleware, limiterMiddleware],
   validate(listBorrowsSchema),
   borrowController.downloadAnalytics
 );
