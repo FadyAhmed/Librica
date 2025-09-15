@@ -1,6 +1,6 @@
 # Librica
 
-A robust library management system built with NestJS, PostgreSQL, and Docker.
+A robust library management system built with NodeJS, PostgreSQL, and Docker.
 
 ---
 
@@ -18,7 +18,7 @@ To run the application locally, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/FadyAhmed/Librica.git](https://github.com/FadyAhmed/Librica.git)
+    git clone https://github.com/FadyAhmed/Librica.git
     ```
 
 2.  **Install PostgreSQL:**
